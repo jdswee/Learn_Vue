@@ -9,18 +9,26 @@
 </head>
 <body>
   <div id="example-3">
-    <button @click="warn('Form cannot be submitted yet.', $event)">Submit</button>
-    <input @keyup.enter="submit">
+    <input v-model.trim="msg" type="text">
+    <br>
+    <p>{{ msg }}</p>
+    <button-counter></button-counter>
   </div>
   <script>
-    new Vue({
+    Vue.component('button-counter', {
+      data: function() {
+        return {
+          count: 0
+        }
+      },
+      template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+    })
+
+    var watchExampleVM = new Vue({
       el: '#example-3',
-      methods: {
-        warn: function(message, event) {
-          if(event) {
-            event.preventDefault();
-          }
-          alert(message)
+      data() {
+        return {
+          msg: ''
         }
       }
     })

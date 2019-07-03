@@ -9,47 +9,34 @@
 </head>
 <body>
   <div id="example-3">
-    <component :is="currentTabComponent"></component>
+    <base-input
+      v-model="username"
+      required
+      placeholder="Enter your username"
+    ></base-input>
+    <p>{{ username }}</p>
   </div>
   <script>
-    Vue.component('alert-box', {
+    Vue.component('base-input', {
+      inheritAttrs: false,
+      props: ['label', 'value'],
       template: '\
-        <div class="demo-alert-box">\
-          <strong>Error!</strong>\
-          <slot></slot>\
-        </div>'
+        <label>\
+          {{ label }}\
+          <input\
+            v-bind="$attrs"\
+            v-bind:value="value"\
+            v-on:input="$emit(\'input\', $event.target.value)"\
+          ></label>'
     })
 
     new Vue({
       el: '#example-3',
       data() {
         return {
-          posts: [
-            {
-              id: 1,
-              title: 'My journey with Vue',
-              content: '<span>my journey with me.</span>'
-            },
-            {
-              id: 2,
-              title: 'Blogging with Vue',
-              content: 'Blogging with Vue'
-            },
-            {
-              id: 3,
-              title: 'Why Vue is so fun',
-              content: 'Why Vue is so fun'
-            }
-          ],
-          postFontSize: 1,
-          searchText: ''
+          username: ''
         }
-      },
-      methods: {
-        onEnlargeText(enlargeAmount) {
-          this.postFontSize += enlargeAmount
-        }
-      },
+      }
     })
   </script>
 </body>

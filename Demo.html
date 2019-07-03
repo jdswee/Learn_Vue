@@ -9,45 +9,42 @@
 </head>
 <body>
   <div id="example-3">
-    <component :is="currentTabComponent"></component>
+    <blog-post post-title="hello"></blog-post>
+    <blog-post v-bind="post"></blog-post>
   </div>
   <script>
-    Vue.component('alert-box', {
-      template: '\
-        <div class="demo-alert-box">\
-          <strong>Error!</strong>\
-          <slot></slot>\
-        </div>'
+    Vue.component('my-component', {
+      props: {
+        propA: Number,
+        propB: [String, Number],
+        propC: {
+          type: String,
+          required: true
+        },
+        propD: {
+          type: Number,
+          default: 100
+        },
+        propE: {
+          type: Object,
+          default: function() {
+            return { message: 'hello' }
+          }
+        },
+        propF: {
+          validator: function (value) {
+            return ['success', 'warning', 'danger'].indexOf(value) !== -1
+          }
+        }
+      },
+      template: '<h3>{{ postTitle }}</h3>'
     })
 
     new Vue({
       el: '#example-3',
       data() {
         return {
-          posts: [
-            {
-              id: 1,
-              title: 'My journey with Vue',
-              content: '<span>my journey with me.</span>'
-            },
-            {
-              id: 2,
-              title: 'Blogging with Vue',
-              content: 'Blogging with Vue'
-            },
-            {
-              id: 3,
-              title: 'Why Vue is so fun',
-              content: 'Why Vue is so fun'
-            }
-          ],
-          postFontSize: 1,
-          searchText: ''
-        }
-      },
-      methods: {
-        onEnlargeText(enlargeAmount) {
-          this.postFontSize += enlargeAmount
+
         }
       },
     })

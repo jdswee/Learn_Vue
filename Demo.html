@@ -9,6 +9,7 @@
 </head>
 <body>
   <div id="example-3">
+<<<<<<< HEAD
     <blog-post post-title="hello"></blog-post>
     <blog-post v-bind="post"></blog-post>
   </div>
@@ -38,15 +39,42 @@
         }
       },
       template: '<h3>{{ postTitle }}</h3>'
+=======
+    <base-input
+      v-model="username"
+      required
+      placeholder="Enter your username"
+    ></base-input>
+    <p>{{ username }}</p>
+  </div>
+  <script>
+    Vue.component('base-input', {
+      inheritAttrs: false,
+      props: ['label', 'value'],
+      template: '\
+        <label>\
+          {{ label }}\
+          <input\
+            v-bind="$attrs"\
+            v-bind:value="value"\
+            v-on:input="$emit(\'input\', $event.target.value)"\
+          ></label>'
+>>>>>>> 9a8d6ab532608f33bee15cd959c9731861bccf0a
     })
 
     new Vue({
       el: '#example-3',
       data() {
         return {
+<<<<<<< HEAD
 
         }
       },
+=======
+          username: ''
+        }
+      }
+>>>>>>> 9a8d6ab532608f33bee15cd959c9731861bccf0a
     })
   </script>
 </body>

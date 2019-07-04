@@ -9,72 +9,44 @@
 </head>
 <body>
   <div id="example-3">
-<<<<<<< HEAD
-    <blog-post post-title="hello"></blog-post>
-    <blog-post v-bind="post"></blog-post>
+    <base-layout>
+      <template #header>
+        <h1>Here might be a page title</h1>
+      </template>
+
+      <p>A paragraph for the main content.</p>
+      <p>And another one.</p>
+
+      <template #footer>
+        <p>Here's some contact info</p>
+      </template>
+    </base-layout>
   </div>
   <script>
-    Vue.component('my-component', {
-      props: {
-        propA: Number,
-        propB: [String, Number],
-        propC: {
-          type: String,
-          required: true
-        },
-        propD: {
-          type: Number,
-          default: 100
-        },
-        propE: {
-          type: Object,
-          default: function() {
-            return { message: 'hello' }
-          }
-        },
-        propF: {
-          validator: function (value) {
-            return ['success', 'warning', 'danger'].indexOf(value) !== -1
+    Vue.component('current-user', {
+      data: function() {
+        return {
+          user: {
+            firstName: "first",
+            lastName: "last"
           }
         }
       },
-      template: '<h3>{{ postTitle }}</h3>'
-=======
-    <base-input
-      v-model="username"
-      required
-      placeholder="Enter your username"
-    ></base-input>
-    <p>{{ username }}</p>
-  </div>
-  <script>
-    Vue.component('base-input', {
-      inheritAttrs: false,
-      props: ['label', 'value'],
       template: '\
-        <label>\
-          {{ label }}\
-          <input\
-            v-bind="$attrs"\
-            v-bind:value="value"\
-            v-on:input="$emit(\'input\', $event.target.value)"\
-          ></label>'
->>>>>>> 9a8d6ab532608f33bee15cd959c9731861bccf0a
+      <span>\
+        <slot v-bind:user="user">\
+          {{ user.lastName }}\
+        </slot>\
+      </span>'
     })
 
     new Vue({
       el: '#example-3',
       data() {
         return {
-<<<<<<< HEAD
 
         }
-      },
-=======
-          username: ''
-        }
       }
->>>>>>> 9a8d6ab532608f33bee15cd959c9731861bccf0a
     })
   </script>
 </body>

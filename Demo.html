@@ -21,23 +21,18 @@
         <p>Here's some contact info</p>
       </template>
     </base-layout>
+    <script type="text/template" id="hello-world-template">
+      <p>Hello </p>
+    </script>
   </div>
   <script>
-    Vue.component('current-user', {
-      data: function() {
-        return {
-          user: {
-            firstName: "first",
-            lastName: "last"
-          }
-        }
-      },
+    Vue.component('terms-of-service', {
       template: '\
-      <span>\
-        <slot v-bind:user="user">\
-          {{ user.lastName }}\
-        </slot>\
-      </span>'
+        <div v-once>\
+          <h1>Terms of Service</h1>\
+          ... a lot of static content ...\
+        </div>\
+      '
     })
 
     new Vue({
@@ -46,7 +41,29 @@
         return {
 
         }
-      }
+      },
+      mounted() {
+        this.attachDatepicker('startDateInput')
+        this.attachDatepicker('endDateInput')
+      },
+      components: {
+        TreeFolderContents: () => import('./tree-folder-content.vue')
+      },
+      methods: {
+        attachDatepicker: function(refName) {
+          var picker = new Pikaday({
+            field: this.$refs[refName],
+            format: 'YYYY-MM-DD'
+          })
+
+          this.$once('hook:beforeDestroy', function () {
+            picker.destroy()
+          })
+        }
+      },
+      beforeCreate() {
+        this.$options.components.TreeFolderContents = require('./tree-folder-content.vue').default
+      },
     })
   </script>
 </body>

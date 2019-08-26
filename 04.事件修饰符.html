@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/vue.js"></script>
+  <style>
+    .inner {
+      height: 150px;
+      background-color: darkcyan;
+    }
+    .outer {
+      padding: 15px;
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- 使用 .stop 阻止冒泡 -->
+    <div class="inner" @click="divHandler">
+      <input type="button" value="click it" @click.stop="btnHandler">
+    </div>
+    <!-- 使用 .prevent 阻止默认行为 -->
+    <a href="http://www.baidu.com" @click.prevent="linkClick">Baidu</a>
+    <!-- 使用 .capture 捕获事件 -->
+    <div class="inner" @click.capture="divHandler">
+      <input type="button" value="click it" @click="btnHandler">
+    </div>
+    <!-- 使用 .self 实现只有点击当前元素时候，才会触发事件处理函数 -->
+    <div class="inner" @click.self="divHandler">
+      <input type="button" value="click it" @click="btnHandler">
+    </div>
+    <!-- 使用 .once 只触发一次事件处理函数 -->
+    <a href="http://www.baidu.com" @click.prevent.once="linkClick">Baidu</a>
+    <!-- .self 与 .stop 的区别 -->
+    <div class="outer" @click="div2Handler">
+      <div class="inner" @click="divHandler">
+        <input type="button" value="click it" @click.stop="btnHandler">
+      </div>
+    </div>
+
+  </div>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+
+      },
+      methods: {
+        divHandler() {
+          console.log("divHandler");
+        },
+        btnHandler() {
+          console.log("btnHandler");
+        },
+        linkClick() {
+          console.log("linkClick");
+        },
+        div2Handler() {
+          console.log("div2Handler")
+        }
+      }
+    })
+  </script>
+</body>
+</html>

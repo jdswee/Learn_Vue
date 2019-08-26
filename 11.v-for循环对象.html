@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 在遍历对象时，除了 val、key 还有 index -->
+    <p v-for="(val, key, index) in user">{{ index }} - {{ key }} - {{ val }}</p>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        user: {
+          id: 1,
+          name: "Tony·Stark",
+          gender: "male"
+        }
+      },
+      methods: {}
+    })
+  </script>
+</body>
+</html>

@@ -11,7 +11,6 @@
 <body>
   <div id="app">
     
-    
     <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">添加品牌</h3>
@@ -23,17 +22,16 @@
           </label>
           <label>
             Name:
-            <input class="form-control" type="text" v-model="name">            
+            <input class="form-control" type="text" v-model="name" @keyup.f2="addItem">            
           </label>
           <input type="button" value="添加" class="btn btn-primary" @click="addItem">
           <label>
             搜索名称关键字:
-            <input type="text" class="form-control" v-model="keywords">
+            <input type="text" class="form-control" v-model="keywords" v-focus>
           </label>
         </div>
     </div>
     
-
     <table class="table table-bordered table-hover table-striped">
       <thead>
         <tr>
@@ -47,7 +45,7 @@
         <tr v-for="(item, index) in search(keywords)" :key="item.index">
           <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
-          <td>{{ item.ctime }}</td>
+          <td>{{ item.ctime | dateFormat}}</td>
           <td><a href="#" @click.prevent="deleteItem(index)">Delete</a></td>
         </tr>
       </tbody>
@@ -55,6 +53,29 @@
   
   </div>
   <script>
+    // 全局过滤器，时间格式化
+    Vue.filter("dateFormat", function(val, pattern = "") {
+      let dt, year, month, date, hour, minute
+      dt = new Date()
+      year = dt.getFullYear()
+      month = (dt.getMonth() + 1).toString().padStart(2, "0")
+      date = dt.getDate().toString().padStart(2, "0")
+      hour = dt.getHours().toString().padStart(2, "0")
+      minute = dt.getMinutes().toString().padStart(2, "0")
+      return `${year}-${month}-${date} ${hour}:${minute}`
+    })
+
+    // 自定义全局按键修饰符
+    Vue.config.keyCodes.f2 = 113
+
+    // 全局自定义指令 v-focus
+    Vue.directive('focus', {
+      // 当被绑定的元素插入到 DOM 中时
+      inserted: function (el) {
+        el.focus()
+      }
+    })
+
     var vm = new Vue({
       el: "#app",
       data: {
@@ -65,6 +86,10 @@
           {id: 1, name: "BMW", ctime: new Date()},
           {id: 2, name: "Benz", ctime: new Date()}
         ]
+      },
+      // 私有过滤器，优先调用私有过滤器
+      filters: {
+        
       },
       methods: {
         addItem() {

@@ -9,6 +9,7 @@
 </head>
 <body>
   <div id="app">
+    <input type="button" value="修改msg" @click="modifiedMsg">
     <h3 id="h3">{{ msg }}</h3>
   </div>
   <script>
@@ -17,13 +18,27 @@
       data: {
         msg: "test"
       },
-      methods: {},
+      methods: {
+        modifiedMsg() {
+          this.msg = "no"
+        }
+      },
       // 生命周期函数，表示在实例完全被创建出来之前，会执行它
       beforeCreate() {},
       created() {},
       beforeMount() {},
       mounted() {
-        
+        // console.log(document.getElementById("h3").innerText);
+      },
+      // 界面还没被更新，数据已经被更新
+      beforeUpdate() {
+        // console.log(document.getElementById("h3").innerText);        
+        // console.log(this.msg)
+      },
+      // 页面已经被更新，数据也已经被更新
+      updated() {
+        console.log(document.getElementById("h3").innerText);        
+        console.log(this.msg)
       },
     })
   </script>

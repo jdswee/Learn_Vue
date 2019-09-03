@@ -8,10 +8,10 @@
 </head>
 <body>
   <script>
-    function show () {
-      console.log("ok")
+    function showinfo(data) {
+      console.log(data)
     }
   </script>
-  <script src="http://127.0.0.1:3000/getscript"></script>
+  <script src="http://127.0.0.1:3000/getscript?callback=showinfo"></script>
 </body>
 </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../lib/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+  <link rel="stylesheet" href="../lib/bootstrap-3.3.7-dist/css/bootstrap.css">
+</head>
+<body>
+  <div id="app">
+    
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">添加品牌</h3>
+      </div>
+      <div class="panel-body form-inline">
+        <label>
+          Id:
+          <input type="text">
+        </label>
+      </div>
+    </div>
+    
+    <table class="table table-bordered table-hover table-striped table-condensed">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Ctime</th>
+          <th>Operation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in list" :key="index">
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.ctime }}</td>
+          <td>
+            <a href="">删除</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        list: [
+          {id: 1, name: "Audi", ctime: new Date()},
+          {id: 2, name: "Benz", ctime: new Date()},
+          {id: 3, name: "BMW", ctime: new Date()},
+
+        ]
+      },
+      methods: {}
+    })
+  </script>
+</body>
+</html>

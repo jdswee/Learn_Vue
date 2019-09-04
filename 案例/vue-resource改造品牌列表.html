@@ -18,7 +18,7 @@
       <div class="panel-body form-inline">
         <label>
           Name:
-          <input class="form-control" type="text" v-model="name">
+          <input class="form-control" type="text" v-model="name" @keyup.enter="add">
         </label>
         <input class="btn btn-primary" type="button" value="添加" @click="add">
       </div>
@@ -34,11 +34,11 @@
       </thead>
       <tbody>
         <tr v-for="(item, index) in list" :key="index">
-          <td>{{ item.godId }}</td>
+          <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
-          <td>{{ item.addDate }}</td>
+          <td>{{ item.ctime }}</td>
           <td>
-            <a href="">删除</a>
+            <a href="" @click.prevent="deleteItem(item.id)">删除</a>
           </td>
         </tr>
       </tbody>
@@ -46,6 +46,9 @@
     
   </div>
   <script>
+    Vue.http.options.root = "http://www.liulongbin.top:3005/"
+    Vue.http.options.emulateJSON = true
+
     var vm = new Vue({
       el: "#app",
       data: {
@@ -59,9 +62,9 @@
       methods: {
         // 获取所有的品牌列表
         getAllList() {
-          this.$http.get('http://120.77.181.41:3000/api/getgod?pageIdx=1').then(result => {
-            if (result.status === 200) {
-              this.list = result.body.gods
+          this.$http.get('api/getprodlist').then(result => {
+            if (result.body.status === 0) {
+              this.list = result.body.message
             } else {
               console.log("获取数据失败")
             }
@@ -69,13 +72,25 @@
         },
         // 添加品牌
         add() {
-          this.$http.post("http://120.77.181.41:3000/api/addgodcom?godId=1", {username: this.name},{emulateJSON: true}).then(result => {
-            if (result.body.status === 1) {
+          this.$http.post("api/addproduct", {name: this.name}).then(result => {
+            if (result.body.status === 0) {
               // success
               this.getAllList()
+              console.log("success")
+              this.name = ""
             } else {
               // fail
               console.log("添加失败！")
+            }
+          })
+        },
+        // 删除
+        deleteItem(id) {
+          this.$http.get("api/delproduct/" + id).then(result => {
+            if (result.body.status === 0) {
+              this.getAllList()
+            } else {
+              console.log("删除失败")
             }
           })
         }

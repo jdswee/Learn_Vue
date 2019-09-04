@@ -11,7 +11,6 @@
 </head>
 <body>
   <div id="app">
-    
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">添加品牌</h3>
@@ -24,7 +23,6 @@
         <input class="btn btn-primary" type="button" value="添加" @click="add">
       </div>
     </div>
-    
     <table class="table table-bordered table-hover table-striped table-condensed">
       <thead>
         <tr>
@@ -36,9 +34,9 @@
       </thead>
       <tbody>
         <tr v-for="(item, index) in list" :key="index">
-          <td>{{ item.id }}</td>
+          <td>{{ item.godId }}</td>
           <td>{{ item.name }}</td>
-          <td>{{ item.ctime }}</td>
+          <td>{{ item.addDate }}</td>
           <td>
             <a href="">删除</a>
           </td>
@@ -52,16 +50,34 @@
       el: "#app",
       data: {
         name: "",
-        list: [
-          {id: 1, name: "Audi", ctime: new Date()},
-          {id: 2, name: "Benz", ctime: new Date()},
-          {id: 3, name: "BMW", ctime: new Date()},
-
-        ]
+        list: []
+      },
+      // 当 vm 实例的 data 和 methods 初始化完毕后，vm 实例会自动执行 created 这个生命周期函数
+      created() {
+        this.getAllList()
       },
       methods: {
+        // 获取所有的品牌列表
+        getAllList() {
+          this.$http.get('http://120.77.181.41:3000/api/getgod?pageIdx=1').then(result => {
+            if (result.status === 200) {
+              this.list = result.body.gods
+            } else {
+              console.log("获取数据失败")
+            }
+          })
+        },
+        // 添加品牌
         add() {
-
+          this.$http.post("http://120.77.181.41:3000/api/addgodcom?godId=1", {username: this.name},{emulateJSON: true}).then(result => {
+            if (result.body.status === 1) {
+              // success
+              this.getAllList()
+            } else {
+              // fail
+              console.log("添加失败！")
+            }
+          })
         }
       }
     })

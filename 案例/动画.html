@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script src="../lib/vue.js"></script>
+  <link rel="stylesheet" href="../lib/animate.min.css">
   <style>
     .v-enter,
     .v-leave-to {
@@ -25,6 +26,8 @@
     .my-leave-active {
       transition: all 1s ease;
     }
+    /* bounceIn bounceOut */
+
   </style>
 </head>
 <body>
@@ -37,13 +40,24 @@
     <transition name="my">
       <h6 v-show="flag2">h6h6h6h6</h6>
     </transition>
+    
+    <button @click="show=!show">Toggle render</button>
+    <transition 
+      name="custom-classes-transition"
+      enter-active-class="animated lightSpeedIn"
+      leave-active-class="animated bounceOut"
+      :duration="{ enter: 800, leave: 400 }"
+    >
+      <p v-if="show">hello</p> 
+    </transition>
   </div>
   <script>
     var vm = new Vue({
       el: "#app",
       data: {
         flag: false,
-        flag2: false
+        flag2: false,
+        show: true
       },
       methods: {
         

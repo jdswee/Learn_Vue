@@ -38,13 +38,18 @@
           el.style.transform = "translate(0, 0)"
         },
         // 完成动画后的结束状态
-        enter(el) {
+        enter(el, done) {
           // 可以认为 el.offsetWidth 会强制动画刷新
           el.offsetWidth
           el.style.transform = "translate(150px, 450px)"
           el.style.transition = "all 1s ease"
+          // done 其实就是 afterEnter 这个函数，也就是说：done 是 afterEnter 函数的引用
+          done()
         },
-        afterEnter(el) {}
+        // 动画完成之后
+        afterEnter(el) {
+          this.flag = false
+        }
       }
     })
   </script>

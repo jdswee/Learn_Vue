@@ -11,13 +11,23 @@
   <div id="app">
     <my-component></my-component>  
   </div>
+
+  <div id="app2">
+    <login></login> 
+  </div>
+
   <!-- template 组件 -->
   <template id="tmp1">
     <div>
       <h1>这是通过 template 元素，在外部定义的组件结构。</h1>
       <h4>h4</h4>
     </div>
-  </template>  
+  </template> 
+
+  <template id="tmp2">
+    <h1>私有组件 h1.</h1>
+  </template>
+  
   <script>
     Vue.component("my-component", {
       template: '#tmp1'
@@ -27,6 +37,16 @@
       el: "#app",
       data: {},
       methods: {}
+    })
+
+    var vm2 = new Vue({
+      el: "#app2",
+      // 定义实例内部私有组件
+      components: {
+        login: {
+          template: '#tmp2'
+        }
+      }
     })
   </script>
 </body>

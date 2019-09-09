@@ -11,11 +11,17 @@
   <div id="app">
     <my-component></my-component>  
   </div>
+  <!-- template 组件 -->
+  <template id="tmp1">
+    <div>
+      <h1>这是通过 template 元素，在外部定义的组件结构。</h1>
+      <h4>h4</h4>
+    </div>
+  </template>  
   <script>
-    var component1 = Vue.extend({
-      template: '<h3>this is a h3 template.</h3>'
+    Vue.component("my-component", {
+      template: '#tmp1'
     })
-    Vue.component("my-component", component1)
 
     var vm = new Vue({
       el: "#app",

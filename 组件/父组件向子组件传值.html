@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../lib/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <component1 :childmsg="parentmsg" @childfunction="parentshow"></component1>
+  </div>
+  <template id="temp">
+    <div>
+      <p>{{ childmsg }}</p>
+      <input type="button" value="dianji"@click="clickitem">
+    </div>
+  </template>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        parentmsg: '父组件数据',
+        name: '',
+        age: ''
+      },
+      methods: {
+        parentshow(msg) {
+          this.name = msg.name
+          this.age = msg.age
+        }
+      },
+      components: {
+        'component1': {
+          template: '#temp',
+          data() {
+            return {
+              sonmsg: {
+                name: 'son',
+                age: 6
+              }
+            }
+          },
+          props: ['childmsg'],
+          methods: {
+            clickitem() {
+              this.$emit('childfunction', this.sonmsg)
+            }
+          },
+        }
+      }
+    })
+  </script>
+</body>
+</html>

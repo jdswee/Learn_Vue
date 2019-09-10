@@ -10,11 +10,16 @@
 <body>
   <div id="app">
     <my-component></my-component>
+    <mylogin></mylogin>
   </div>
   <script>
+    var login = {
+      template : '<h1>1234</h1>'
+    }
+
     Vue.component('my-component', {
       template: '<h3>这是全局组件 - {{ msg }}</h3>',
-      data: function() {
+      data: function() { 
         return {
           msg: '这是组件中的 data 定义的数据。'
         }
@@ -23,8 +28,9 @@
     var vm = new Vue({
       el: '#app',
       data: {},
-      methods: {
-        
+      methods: {},
+      components: {
+        'mylogin': login
       }
     })
   </script>

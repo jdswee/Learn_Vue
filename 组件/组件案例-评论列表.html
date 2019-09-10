@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../lib/vue.js"></script>
+  <link rel="stylesheet" href="../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div id="app">
+    <cmt></cmt>
+    <ul class="list-group">
+      <li class="list-group-item" v-for="(item, index) in list" :key="index">
+        <span class="badge">评论人：{{ item.user }}</span>
+        {{ item.content }}
+      </li>
+    </ul>
+    
+  </div>
+  <template id="cmtbox">
+    <div>
+      <div class="form-group">
+        <label>评论人：</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>评论内容：</label>
+        <input type="textarea" class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="button" value="提交评论" class="btn btn-primary">
+      </div>
+    </div>
+  </template>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        list: [
+          {id: Date.now(), user: 'test1', content: 'test1test1测试1测试1测试1'},
+          {id: Date.now(), user: 'test2', content: 'test2test2测试2测试2测试2'},
+          {id: Date.now(), user: 'test3', content: 'test3test3测试3测试3测试3'}
+        ]
+      },
+      methods: {},
+      components: {
+        'cmt': {
+          template: '#cmtbox'
+        }
+      }
+    })
+  </script>
+</body>
+</html>

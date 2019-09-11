@@ -10,7 +10,7 @@
 </head>
 <body>
   <div id="app">
-    <cmt></cmt>
+    <cmt @func="loadComments"></cmt>
     <ul class="list-group">
       <li class="list-group-item" v-for="(item, index) in list" :key="index">
         <span class="badge">评论人：{{ item.user }}</span>
@@ -44,7 +44,12 @@
           {id: Date.now(), user: 'test3', content: 'test3test3测试3测试3测试3'}
         ]
       },
-      methods: {},
+      methods: {
+        loadComments() {
+          let list = JSON.parse(localStorage.getItem('cmts') || '[]')
+          this.list = list
+        }
+      },
       components: {
         'cmt': {
           template: '#cmtbox',
@@ -59,13 +64,17 @@
             postComments() {
               let comment = {id: this.id, user: this.user ,content: this.content,}
               let list = JSON.parse(localStorage.getItem('cmts') || '[]')
-              list.push(comment)
+              list.unshift(comment)
               localStorage.setItem('cmts', JSON.stringify(list))
               this.user = this.content = ''
+              this.$emit('func')
             }
           }
         }
-      }
+      },
+      created() {
+        this.loadComments()
+      },
     })
   </script>
 </body>

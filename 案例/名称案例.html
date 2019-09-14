@@ -9,8 +9,8 @@
 </head>
 <body>
   <div id='app'>
-    <input type="text" v-model="firstname" @keyup="getFullname"> +
-    <input type="text" v-model="lastname" @keyup="getFullname"> =
+    <input type="text" v-model="firstname"> +
+    <input type="text" v-model="lastname"> =
     <input type="text" v-model="fullname">
   </div>
   <script>
@@ -21,11 +21,16 @@
         lastname: '',
         fullname: ''
       },
-      methods: {
-        getFullname() {
-          this.fullname = this.firstname + '-' + this.lastname
+      methods: {},
+      // 使用这个属性，可以监视 data 中指定数据的变化，触发 watch 中对应的处理函数
+      watch: {
+        'firstname': function(newValue) {
+           this.fullname = newValue + '·' + this.lastname
+        },
+        'lastname': function(newValue) {
+          this.fullname = this.firstname + '·' + newValue 
         }
-      }
+      },
     })
   </script>
 </body>

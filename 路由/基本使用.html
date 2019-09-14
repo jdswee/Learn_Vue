@@ -26,7 +26,7 @@
 <body>
   <div id="app">
     <!-- router-link 默认渲染为一个 a 标签 -->
-    <router-link to="/login/12/ls">Login</router-link>
+    <router-link to="/login">Login</router-link>
     <router-link to="/register">Register</router-link>
     <transition mode="out-in">
       <router-view></router-view>
@@ -34,10 +34,7 @@
   </div>
   <script>
     const login = {
-      template: '<h1>login - {{ $route.params.id }} - {{ $route.params.name }}</h1>',
-      created() {
-        console.log(this.$route.params.id)
-      }
+      template: '<h1>login</h1>'
     }
     const register = {
       template: '<h1>register</h1>'
@@ -47,7 +44,7 @@
       routes: [
         // 重定向到登录页面
         {path: '/', redirect: '/login'},
-        {path: '/login/:id/:name', component: login},
+        {path: '/login', component: login},
         {path: '/register', component: register}
       ],
       linkActiveClass: 'myactive'
@@ -57,7 +54,16 @@
       el: '#app',
       data: {},
       methods: {},
-      router: router
+      router: router,
+      watch: {
+        '$route.path': function(newValue) {
+          if(newValue === '/login') {
+            console.log('欢迎登陆')
+          }else if(newValue === '/register'){
+            console.log('欢迎注册')
+          }
+        }
+      },
     })
   </script>
 </body>

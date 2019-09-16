@@ -1,0 +1,33 @@
+{
+  "name": "vuedemo",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "dev": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdswee/VueDemo.git"
+  },
+  "author": "leeqiang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdswee/VueDemo/issues"
+  },
+  "homepage": "https://github.com/jdswee/VueDemo#readme"
+}

@@ -11,7 +11,7 @@ module.exports = {
     open: true,
     port: 8080,
     hot: true,
-    contentBase: path.join(__dirname, 'dist')
+    // contentBase: path.join(__dirname, 'dist')
   },
   plugins: [
     // 创建一个在内存中生成 HTML 页面的插件
@@ -34,7 +34,7 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
-          'less-loader'
+          'less-loader' 
         ]
       },
       {
@@ -43,6 +43,29 @@ module.exports = {
           'style-loader',
           'css-loader',
           'sass-loader'
+        ]
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
+      },
+      // {
+      //   test: /\.(png|jpg|jpeg|gif)$/i,
+      //   use: 'url-loader?limit=8192&name=[hash:8]-[name].[ext]'
+      // }
+      {
+        test: /\.(ttf|eot|svg|woff|woff2|otf)$/,
+        use: [
+          {
+            loader: 'url-loader'
+          }
         ]
       }
     ]

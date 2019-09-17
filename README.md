@@ -7,6 +7,7 @@ VUEDEMO
 |- webpack.config.js  
 |- /dist  
 　|- index.html  
+　|- bundle.js  
 |- /lib  
 　|- animate.min.css  
 　|- vue-router.js  
@@ -16,4 +17,6 @@ VUEDEMO
 　|- index.js  
 　|- /css  
 　　|- index.css  
+　　|- index.less  
+　　|- index.scss  
 |- node_modules

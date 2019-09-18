@@ -17,7 +17,7 @@ module.exports = {
   plugins: [
     // 创建一个在内存中生成 HTML 页面的插件
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'dist/index.html'),
+      template: path.resolve(__dirname, 'index.html'),
       filename: 'index.html'
     }),
     new VueLoaderPlugin()

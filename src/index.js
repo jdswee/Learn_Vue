@@ -1,14 +1,17 @@
 // javscript 入口文件
-
-import $ from 'jquery'
 import '../src/css/index.css' 
 import '../src/css/index.less'
 import '../src/css/index.scss'
 import 'bootstrap/dist/css/bootstrap.css'
+import Vue from 'vue'
+// vue组件
+import login from './login.vue'
+ 
+const vm = new Vue({
+  el: '#app',
+  data: {},
+  render: createElements => createElements(login)
+})
 
-// class 关键字，是 ES6 中用来实现面向对象编程的方式
-class Person {
-  static info = { name: 'zs', age: 20 }
-}
-
-console.log(Person.info)
+import test from './test'
+console.log(test)

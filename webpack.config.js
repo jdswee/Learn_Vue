@@ -1,5 +1,6 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   entry: './src/index.js',
@@ -18,10 +19,15 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'dist/index.html'),
       filename: 'index.html'
-    })
+    }),
+    new VueLoaderPlugin()
   ],
   module: {
     rules: [
+      {
+        test: /\.vue$/,
+        use: 'vue-loader'
+      },
       {
         test: /\.css$/,
         use: [
@@ -84,5 +90,10 @@ module.exports = {
         }
       }
     ]
+  },
+  resolve: {
+    alias: {
+      vue$: 'vue/dist/vue.js'
+    }
   }
 }

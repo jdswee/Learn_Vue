@@ -1,19 +1,21 @@
 // javscript 入口文件
-import '../src/css/index.css' 
-import '../src/css/index.less'
-import '../src/css/index.scss'
-import 'bootstrap/dist/css/bootstrap.css'
 import Vue from 'vue'
-// vue组件
-import login from './login.vue'
- 
-const vm = new Vue({
-  el: '#app',
-  data: {},
-  render: createElements => createElements(login)
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+import app from './App.vue'
+import account from './main/Account.vue'
+import goodslist from './main/GoodsList.vue'
+
+var router = new VueRouter({
+  routes: [
+    { path: '/account', component: account },
+    { path: '/goodslist', component: goodslist }
+  ]
 })
 
-import test, { title, content } from './test'
-console.log(test)
-console.log(title)
-console.log(content)
+var vm = new Vue({
+  el: '#app',
+  render: c => c(app),
+  router
+})

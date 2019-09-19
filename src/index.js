@@ -12,3 +12,8 @@ const vm = new Vue({
   data: {},
   render: createElements => createElements(login)
 })
+
+import test, { title, content } from './test'
+console.log(test)
+console.log(title)
+console.log(content)

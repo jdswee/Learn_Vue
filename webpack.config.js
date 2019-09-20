@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
+  mode: 'development',
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
@@ -14,14 +15,6 @@ module.exports = {
     hot: true,
     // contentBase: path.join(__dirname, 'dist')
   },
-  plugins: [
-    // 创建一个在内存中生成 HTML 页面的插件
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'index.html'),
-      filename: 'index.html'
-    }),
-    new VueLoaderPlugin()
-  ],
   module: {
     rules: [
       {
@@ -80,9 +73,18 @@ module.exports = {
             ]
           }
         }
-      }
+      },
+     
     ]
   },
+  plugins: [
+    // 创建一个在内存中生成 HTML 页面的插件
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'index.html'),
+      filename: 'index.html'
+    }),
+    new VueLoaderPlugin()
+  ],
   resolve: {
     alias: {
       vue$: 'vue/dist/vue.js'

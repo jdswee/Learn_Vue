@@ -1,18 +1,14 @@
 // javscript 入口文件
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
-Vue.use(VueRouter)
 import app from './App.vue'
-import account from './main/Account.vue'
-import goodslist from './main/GoodsList.vue'
-
-var router = new VueRouter({
-  routes: [
-    { path: '/account', component: account },
-    { path: '/goodslist', component: goodslist }
-  ]
-})
+// Vue Router
+import router from './router.js'
+Vue.use(VueRouter) 
+// Mint UI
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+Vue.use(MintUI)
 
 var vm = new Vue({
   el: '#app',

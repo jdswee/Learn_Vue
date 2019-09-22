@@ -7,6 +7,8 @@
     <mt-button plain>plain</mt-button>
     <mt-button icon="back">back</mt-button>
     <mt-button icon="more">more</mt-button>
+    <button type="button" class="mui-btn mui-btn-royal">紫色</button>
+    <button type="button" class="mui-btn">默认</button>
     <router-link to="/account">Account</router-link>
     <router-link to="/goodsList">GoodsList</router-link>
     <router-view></router-view>
@@ -16,29 +18,8 @@
 import { Toast } from 'mint-ui';
 export default {
   data() {
-    return {
-      toastInstance: null
-    }  
-  },
-  methods: {
-    getList() {
-      this.show()
-      setTimeout(() => {
-        this.toastInstance.close()
-      }, 3000)
-    },
-    show() {
-      this.toastInstance = Toast({
-        message: 'tips',
-        className: 'color-red',
-        iconClass: 'icon glyphicon glyphicon-ok',
-        duration: -1
-      })
-    }
-  },
-  created() {
-    this.getList()
-  },
+    return {}  
+  }
 }
 </script>
 <style lang="less" scope>

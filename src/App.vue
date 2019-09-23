@@ -3,7 +3,7 @@
     <!-- 顶部 header 区域 -->
     <mt-header fixed title="Vue 项目实例"></mt-header>
     <!-- 中间 content 区域 -->
-
+    <router-view></router-view>
     <!-- 底部 tabbar 区域 -->
     <nav class="mui-bar mui-bar-tab">
 			<router-link class="mui-tab-item" to="/Home">

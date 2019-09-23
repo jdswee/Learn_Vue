@@ -29,11 +29,11 @@ module.exports = {
         ]
       },
       {
-        test: /\.less$/,
+        test: /\.scss$/,
         use: [
-          'style-loader',
-          'css-loader',
-          'less-loader' 
+          "style-loader",
+          "css-loader",
+          "sass-loader"
         ]
       },
       {
@@ -62,6 +62,7 @@ module.exports = {
       {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
+<<<<<<< HEAD
         use: {
           loader: 'babel-loader',
           options: {
@@ -75,6 +76,10 @@ module.exports = {
         }
       },
      
+=======
+        use: 'babel-loader'
+      }
+>>>>>>> 47807703a91213b884389934c906c440a910c02d
     ]
   },
   plugins: [

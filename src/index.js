@@ -1,17 +1,15 @@
-// javscript 入口文件
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import app from './App.vue'
-// Vue Router
-import router from './router.js'
-Vue.use(VueRouter) 
+// Reset CSS
+import './css/index.scss'
 // Mint UI
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
-Vue.use(MintUI)
+import { Header } from 'mint-ui';
+Vue.component(Header.name, Header);
+// MUI
+import '../lib/mui-master/dist/css/mui.min.css'
 
-var vm = new Vue({
+import App from './App.vue'
+
+const vm = new Vue({
   el: '#app',
-  render: c => c(app),
-  router
+  render: c => c(App)
 })

@@ -6,10 +6,11 @@ import Search from './components/tabbar/SearchContainer.vue'
 
 var router = new VueRouter({
   routes: [
+    { path: '/', redirect: '/Home' },
     { path: '/Home', component: Home },
     { path: '/Member', component: Member },
     { path: '/ShoppingCart', component: ShoppingCar },
-    { path: '/Search', component: Search }
+    { path: '/Search', component: Search } 
   ],
   linkActiveClass: 'mui-active'
 })

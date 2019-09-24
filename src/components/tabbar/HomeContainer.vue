@@ -71,15 +71,6 @@ export default {
   height: 200px;
 }
 .mint-swipe-item {
-  &:nth-child(1) {
-    background-color: red;
-  }
-  &:nth-child(2) {
-    background-color: goldenrod;
-  }
-  &:nth-child(3) {
-    background-color: violet;
-  }
   img {
     width: 100%;
     height: 100%;

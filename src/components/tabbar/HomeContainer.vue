@@ -14,19 +14,36 @@
           <div class="mui-media-body">新闻资讯</div>
         </router-link>
       </li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
-        <img src="../../img/menu2.png">
-        <div class="mui-media-body">图片分享</div></a></li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
-        <img src="../../img/menu3.png">
-        <div class="mui-media-body">商品购买</div></a></li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
-        <img src="../../img/menu4.png">
-        <div class="mui-media-body">留言反馈</div></a></li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
-        <img src="../../img/menu5.png">
-        <div class="mui-media-body">视频专区</div></a></li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <router-link to=""> 
+          <img src="../../img/menu2.png">
+          <div class="mui-media-body">图片分享</div>
+        </router-link>
+      </li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <!-- TODO -->        
+        <a href="#">
+          <img src="../../img/menu3.png">
+          <div class="mui-media-body">商品购买</div>
+        </a>
+      </li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <!-- TODO -->        
+        <a href="#">
+          <img src="../../img/menu4.png">
+          <div class="mui-media-body">留言反馈</div>
+        </a>
+      </li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <!-- TODO -->        
+        <a href="#">
+          <img src="../../img/menu5.png">
+          <div class="mui-media-body">视频专区</div>
+        </a>
+      </li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <!-- TODO -->        
+        <a href="#">
         <img src="../../img/menu6.png">
         <div class="mui-media-body">联系我们</div></a></li>
     </ul> 
@@ -49,7 +66,7 @@ export default {
   methods: {
     // 获取轮播图数据
     getSwipeData() {
-      this.$http.get('https://api.github.com/search/users?q=aa').then(result => {
+      this.$http.get('search/users?q=aa').then(result => {
         if (result.status === 200) {
           this.lunbotuList = result.body.items.slice(2,5)
         } else {

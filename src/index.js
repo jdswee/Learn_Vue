@@ -4,7 +4,7 @@ import moment from 'moment'
 // vue-resource
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
-Vue.http.options.root = 'https://api.github.com'
+Vue.http.options.root = 'http://www.liulongbin.top:3005'
 // vue-router
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
@@ -22,9 +22,9 @@ import '../lib/mui-master/examples/hello-mui/css/icons-extra.css'
 
 import App from './App.vue'
 
-Vue.filters('dateFormat', function (value) {
+Vue.filter('dateFormat', function (value) {
   if(!value) return ''
-  moment(value).format('YYYY-MM-DD HH:mm:ss')
+  return moment(value).format('YYYY-MM-DD HH:mm:ss')
 })
 
 const vm = new Vue({

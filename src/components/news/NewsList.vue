@@ -2,16 +2,16 @@
   <div>
     <ul class="mui-table-view">
       <li class="mui-table-view-cell mui-media" v-for="item in newsList" :key="item.id">
-        <a href="javascript:;">
-          <img class="mui-media-object mui-pull-left" :src="item.avatar_url">
+        <router-link :to="'/Home/newsInfo/'+item.id" >
+          <img class="mui-media-object mui-pull-left" :src="item.img_url">
           <div class="mui-media-body">
-            <h1>{{ item.login }}</h1>
+            <h1>{{ item.title }}</h1>
             <p class='mui-ellipsis'>
-              <span>发表时间：{{ item.score }}</span>
-              <span>点击：{{ item.id }}次</span>
+              <span>发表时间：{{ item.add_time | dateFormat }}</span>
+              <span>点击：{{ item.click }}次</span>
             </p>
           </div>
-        </a>
+        </router-link>
       </li>
 
 			</ul>
@@ -31,9 +31,9 @@ export default {
   },
   methods: {
     getNewsList() {
-      this.$http.get('search/users?q=aa').then(response => {
+      this.$http.get('api/getnewslist').then(response => {
         if(response.status === 200) {
-          this.newsList = response.body.items
+          this.newsList = response.body.message
         } else {
           Toast('获取新闻列表失败')
         }

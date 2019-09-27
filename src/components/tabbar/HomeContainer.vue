@@ -3,7 +3,9 @@
     <!-- 轮播图 -->
     <mt-swipe :auto="3000" :showIndicators="true">
       <mt-swipe-item v-for="item in lunbotuList" :key="item.id">
-        <img :src="item.avatar_url">
+        <a :href="item.url">
+          <img :src="item.img">
+        </a>
       </mt-swipe-item>
     </mt-swipe>
 
@@ -66,9 +68,9 @@ export default {
   methods: {
     // 获取轮播图数据
     getSwipeData() {
-      this.$http.get('search/users?q=aa').then(result => {
+      this.$http.get('api/getlunbo').then(result => {
         if (result.status === 200) {
-          this.lunbotuList = result.body.items.slice(2,5)
+          this.lunbotuList = result.body.message
         } else {
           Toast('获取轮播图失败')
         }

@@ -5,6 +5,7 @@ import moment from 'moment'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 Vue.http.options.root = 'http://www.liulongbin.top:3005'
+Vue.http.options.emulateJSON = true;
 // vue-router
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)

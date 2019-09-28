@@ -2,8 +2,8 @@
   <div>
     <h3>发表评论</h3>
     <hr>
-    <textarea placeholder="请输入要输入的内容" maxlength="120"></textarea>
-    <mt-button type="primary" size="large">提交评论 </mt-button>
+    <textarea placeholder="请输入要输入的内容" maxlength="120" v-model="commentContent"></textarea>
+    <mt-button type="primary" size="large" @click="postComment">提交评论 </mt-button>
     <div class="cmt-list">
       <div class="item" v-for="(item, index) in commentList" :key="index">
         <div class="title">
@@ -21,13 +21,13 @@ export default {
   data() {
     return {
       pageIndex: 1, // 评论数据页码
-      commentList: []
+      commentList: [],
+      commentContent: ''
     }
   },
   props: ['id'],
   created() {
     this.getComments()
-    this.pageIndex = 1
   },
   methods: {
     getComments() {
@@ -43,6 +43,29 @@ export default {
     btnGetMore() {
       this.pageIndex++
       this.getComments()
+    },
+    postComment() {
+      if (this.commentContent.trim().length === 0) {
+        return Toast('评论内容不能为空')
+      }
+      this.$http.post('api/postcomment/' + this.id, {
+        content: this.commentContent.trim()
+      }).then(response => {
+        if (response.body.status === 0) {
+          let cmt = {
+            user_name: '章承恩',
+            add_time: Date.now(),
+            content: this.commentContent.trim()
+          }
+          this.commentList.unshift(cmt)
+          this.commentContent = ''
+          Toast(response.body.message)
+        } else {
+          Toast(response.body.message)
+        }
+      }, response => {
+        Toast('连接数据接口失败')
+      })
     }
   }
 }

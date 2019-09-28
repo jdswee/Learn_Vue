@@ -11,16 +11,20 @@
       </div>
     </div> 
     <!-- 图片区域 -->
-    <ul>
+    <ul class="photo-list">
       <li v-for="(item, index) in imgList" :key="index">
-        <img v-lazy="item.img_url">
+        <img v-lazy="item.img_url" class="photo-item-img">
+        <div class="info">
+          <h1 class="title">{{ item.title }}</h1>
+          <p class="content">{{ item.zhaiyao }}</p>
+        </div>
       </li>
     </ul>
   </div>
 </template>
 <script>
 import mui from '../../../lib/mui-master/examples/hello-mui/js/mui.min.js'
-
+import { Toast } from 'mint-ui'
 export default {
   data() {
     return {
@@ -50,6 +54,9 @@ export default {
       this.$http.get('api/getimages/' + categoryid).then(response => {
         if (response.body.status === 0) {
           this.imgList = response.body.message
+          if (response.body.message.length === 0) {
+            return Toast('无数据')
+          }
         }
       })
     }
@@ -60,9 +67,40 @@ export default {
 * {
   touch-action: pan-y;
 }
-img[lazy=loading] {
-  width: 40px;
-  height: 300px;
-  margin: auto;
+.photo-list {
+  padding: 10px 10px 0 10px;
+  li {
+    position: relative;
+    box-shadow: 0 0 10px #999;
+    background-color: #ccc;
+    text-align: center;
+    margin-bottom: 10px;
+    overflow: hidden;
+    .photo-item-img {
+      width: 100%;
+      vertical-align: middle;
+    }
+    .info {
+      position: absolute;
+      bottom: 0;
+      max-height: 83px;
+      padding: 0 5px;
+      background-color: rgba($color: #000000, $alpha: 0.5);
+      text-align: left;
+      color: #fff;
+      .title {
+        font-size: 14px;
+      }
+      .content {
+        font-size: 12px;
+        color: #fff;
+      }
+    }
+    img[lazy=loading] {
+      width: 40px;
+      height: 300px;
+      margin: auto;
+    }
+  }
 }
 </style>

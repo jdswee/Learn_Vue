@@ -13,12 +13,9 @@ import router from './router'
 // Reset CSS
 import './css/index.scss'
 // Mint UI
-import { Header,Swipe, SwipeItem, Button, Lazyload } from 'mint-ui';
-Vue.component(Header.name, Header);
-Vue.component(Swipe.name, Swipe);
-Vue.component(SwipeItem.name, SwipeItem);
-Vue.component(Button.name, Button);
-Vue.use(Lazyload)
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+Vue.use(MintUI)
 // MUI
 import '../lib/mui-master/dist/css/mui.css'
 import '../lib/mui-master/examples/hello-mui/css/icons-extra.css'

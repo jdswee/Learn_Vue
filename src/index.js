@@ -19,7 +19,7 @@ Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
 Vue.component(Button.name, Button);
 // MUI
-import '../lib/mui-master/dist/css/mui.min.css'
+import '../lib/mui-master/dist/css/mui.css'
 import '../lib/mui-master/examples/hello-mui/css/icons-extra.css'
 
 import App from './App.vue'

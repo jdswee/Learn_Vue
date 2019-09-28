@@ -6,12 +6,16 @@
       <span>点击：{{ contentList.click }}次</span>
     </p>
     <hr />
+    <!-- 新闻内容 -->
     <div class="content" v-html="contentList.content"></div>
+    <comment :id="this.id"></comment>
   </div>
 </template>
 
 <script>
 import { Toast } from "mint-ui";
+// 评论子组件
+import comment from '../subcomponents/comment.vue'
 
 export default {
   data () {
@@ -38,6 +42,9 @@ export default {
         }
       );
     }
+  },
+  components: {
+    'comment': comment
   }
 }
 </script>

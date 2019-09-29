@@ -22,6 +22,9 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+hr {
+	margin: 0;
+}
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -46,4 +49,20 @@ q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+.thumbs {
+	margin-top: 10px;
+	.my-gallery {
+		display: flex;
+		flex-wrap: wrap;
+		figure {
+			// display: inline-block;
+			width: 30%;
+			margin: 0 5px;
+			img {
+				width: 100%;
+				box-shadow: 0 0 8px #999;
+			}
+		}
+	}
 }

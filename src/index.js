@@ -19,6 +19,13 @@ Vue.use(MintUI)
 // MUI
 import '../lib/mui-master/dist/css/mui.css'
 import '../lib/mui-master/examples/hello-mui/css/icons-extra.css'
+// 图片预览插件
+import VuePreview from 'vue-preview' 
+Vue.use(VuePreview, {
+  bgOpacity: 0.85,
+  tapToClose: true,
+})
+
 
 import App from './App.vue'
 

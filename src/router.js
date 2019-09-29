@@ -7,6 +7,7 @@ import NewsList from './components/news/NewsList.vue'
 import NewsInfo from './components/news/NewsInfo.vue'
 import PhotoList from './components/photos/Photolist.vue'
 import PhotoInfo from './components/photos/Photoinfo.vue'
+import ProductList from './components/products/ProductList.vue'
 
 var router = new VueRouter({
   routes: [
@@ -26,7 +27,8 @@ var router = new VueRouter({
       path: '/Home/photoinfo/:id',
       component: PhotoInfo,
       props: true
-    } 
+    },
+    { path: '/Home/productlist', component: ProductList } 
   ],
   linkActiveClass: 'mui-active'
 })

@@ -22,12 +22,11 @@
           <div class="mui-media-body">图片分享</div>
         </router-link>
       </li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <!-- TODO -->        
-        <a href="#">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">       
+        <router-link to="/Home/productlist">
           <img src="../../img/menu3.png">
           <div class="mui-media-body">商品购买</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <!-- TODO -->        

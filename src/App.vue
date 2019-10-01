@@ -1,7 +1,11 @@
 <template>
   <div class="app-container">
     <!-- 顶部 header 区域 -->
-    <mt-header fixed title="Vue 项目实例"></mt-header>
+    <mt-header fixed title="Vue 项目实例">
+			<router-link to="/" slot="left">
+				<mt-button icon="back">返回</mt-button>
+			</router-link>
+		</mt-header>
     <!-- 中间 content 区域 -->
     <transition>
 			<router-view></router-view>

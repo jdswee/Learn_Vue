@@ -7,7 +7,10 @@ import NewsList from './components/news/NewsList.vue'
 import NewsInfo from './components/news/NewsInfo.vue'
 import PhotoList from './components/photos/Photolist.vue'
 import PhotoInfo from './components/photos/Photoinfo.vue'
+// 商品列表页
 import ProductList from './components/products/ProductList.vue'
+// 商品详情页
+import ProductInfo from './components/products/ProductInfo.vue'
 
 var router = new VueRouter({
   routes: [
@@ -28,7 +31,12 @@ var router = new VueRouter({
       component: PhotoInfo,
       props: true
     },
-    { path: '/Home/productlist', component: ProductList } 
+    { path: '/Home/productlist', component: ProductList },
+    { 
+      path: '/Home/productinfo/:id',
+      component: ProductInfo,
+      props: true
+    }
   ],
   linkActiveClass: 'mui-active'
 })

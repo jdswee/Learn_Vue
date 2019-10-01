@@ -1,13 +1,7 @@
 <template>
   <div>
     <!-- 轮播图 -->
-    <mt-swipe :auto="3000" :showIndicators="true">
-      <mt-swipe-item v-for="item in lunbotuList" :key="item.id">
-        <a :href="item.url">
-          <img :src="item.img">
-        </a>
-      </mt-swipe-item>
-    </mt-swipe>
+    <swiper :lunbotuList="lunbotuList"></swiper>
 
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
@@ -54,6 +48,7 @@
 
 <script>
 import { Toast } from 'mint-ui'
+import swiper from '../subcomponents/swiper.vue'
 
 export default {
   data() {
@@ -80,20 +75,14 @@ export default {
         })
       })
     }
+  },
+  components: {
+    'swiper': swiper
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.mint-swipe {
-  height: 200px;
-}
-.mint-swipe-item {
-  img {
-    width: 100%;
-    height: 100%;
-  }
-}
 .mui-table-view.mui-grid-view.mui-grid-9 {
   border: none;
   background-color: #fff;

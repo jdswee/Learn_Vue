@@ -11,6 +11,10 @@ import PhotoInfo from './components/photos/Photoinfo.vue'
 import ProductList from './components/products/ProductList.vue'
 // 商品详情页
 import ProductInfo from './components/products/ProductInfo.vue'
+// 商品图文介绍页
+import ProductDetail from './components/products/Productdetail.vue'
+// 商品评论页
+import ProductComment from './components/products/ProductComment.vue'
 
 var router = new VueRouter({
   routes: [
@@ -35,6 +39,18 @@ var router = new VueRouter({
     { 
       path: '/Home/productinfo/:id',
       component: ProductInfo,
+      props: true
+    },
+    {
+      path: '/Home/productdetail/:id',
+      component: ProductDetail,
+      name: 'productdetail',
+      props: true
+    },
+    {
+      path: '/Home/productcomment/:id',
+      component: ProductComment,
+      name: 'productcomment',
       props: true
     }
   ],

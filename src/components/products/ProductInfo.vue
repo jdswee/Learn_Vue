@@ -24,7 +24,7 @@
           <p class="price">
             市场价：<del>￥{{productInfo.market_price}}</del>  销售价：<span class="now">￥{{productInfo.sell_price}}</span>
           </p>
-          购买数量：<number-box></number-box>
+          购买数量：<number-box @getCount="getSelectedCount" :maxcount="productInfo.stock_quantity"></number-box>
           <div class="btn">
             <mt-button type="primary" size="small">立即购买</mt-button>
             <mt-button type="danger" size="small" @click="togglebal">加入购物车</mt-button>
@@ -59,7 +59,8 @@ export default {
     return {
       imagesList: [], // 轮播图
       productInfo: {},
-      ballflag: true
+      ballflag: false,
+      itemcount: 1
     }
   },
   props: ['id'],
@@ -110,11 +111,14 @@ export default {
       const ydistance = badgePosition.top - ballPosition.top
 
       el.style.transform = `translate(${xdistance}px, ${ydistance}px)`
-      el.style.transition = "all 1s cubic-bezier(.45,-0.13,1,.75)";
+      el.style.transition = "all .5s cubic-bezier(.45,-0.13,1,.75)";
       done();
     },
     afterEnter(el) {
       this.ballflag = !this.ballflag
+    },
+    getSelectedCount(count) {
+      this.itemcount = count
     }
   },
   components: {

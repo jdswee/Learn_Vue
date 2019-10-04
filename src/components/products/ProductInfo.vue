@@ -98,6 +98,14 @@ export default {
     },
     togglebal() {
       this.ballflag = !this.ballflag
+      // { id: , count: , price: , selected:  }
+      const goodInfo = {
+        id: this.id,
+        count: this.itemcount,
+        price: this.productInfo.sell_price,
+        selected: true
+      } 
+      this.$store.commit('addToCart', goodInfo)
     },
     beforeEnter(el) {
       el.style.transform = "translate(0, 0)"

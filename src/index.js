@@ -10,6 +10,42 @@ Vue.http.options.emulateJSON = true;
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 import router from './router'
+
+var shoppingCart = JSON.parse(localStorage.getItem('shoppingcart')) 
+
+// Vuex
+import Vuex from 'vuex'
+Vue.use(Vuex)
+const store = new Vuex.Store({
+  state: {
+    cart: shoppingCart
+  },
+  mutations: {
+    addToCart(state, goodsInfo) {
+      let flag = false
+      state.cart.some(item => {
+        if (item.id == goodsInfo.id) {
+          item.count += parseInt(goodsInfo.count)
+          flag = true
+          return true
+        }
+      })
+      if(!flag) {
+        state.cart.push(goodsInfo)
+      }
+      localStorage.setItem('shoppingcart', JSON.stringify(state.cart))
+    }
+  },
+  getters: {
+    getTotalNumb(state) {
+      let totalnumb = 0
+      state.cart.forEach(item => {
+        totalnumb += item.count
+      })
+      return totalnumb
+    }
+  }
+})
 // Reset CSS
 import './css/index.scss'
 // Mint UI
@@ -37,5 +73,6 @@ Vue.filter('dateFormat', function (value) {
 const vm = new Vue({
   el: '#app',
   router,
-  render: c => c(App)
+  render: c => c(App),
+  store,
 })

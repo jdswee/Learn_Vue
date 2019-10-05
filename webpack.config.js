@@ -12,7 +12,7 @@ module.exports = {
   devServer: {
     open: true,
     // host: '0.0.0.0',
-    port: 8082,
+    port: 8081,
     hot: true,
     // contentBase: path.join(__dirname, 'dist')
   },

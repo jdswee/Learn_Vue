@@ -22,3 +22,5 @@ VUEDEMO
 |- node_modules
 
 [主流开源协议之间的异同](https://www.zhihu.com/question/19568896)
+## 接口地址
+### 购物车：api/goods/getshopcarlist/:ids

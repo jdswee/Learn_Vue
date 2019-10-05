@@ -11,7 +11,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 import router from './router'
 
-var shoppingCart = JSON.parse(localStorage.getItem('shoppingcart')) 
+var shoppingCart = JSON.parse(localStorage.getItem('shoppingcart') || '[]') 
 
 // Vuex
 import Vuex from 'vuex'
@@ -34,6 +34,24 @@ const store = new Vuex.Store({
         state.cart.push(goodsInfo)
       }
       localStorage.setItem('shoppingcart', JSON.stringify(state.cart))
+    },
+    updateGoodinfo(state, goodsInfo) {
+      state.cart.some(item => {
+        if(item.id == goodsInfo.id) {
+          item.count = parseInt(goodsInfo.count) 
+          return true
+        }
+      })
+      localStorage.setItem('shoppingcart', JSON.stringify(state.cart))
+    },
+    removeGood(state, id) {
+      state.cart.some((item, index) => {
+        if(item.id == id) {
+          state.cart.splice(index, 1)
+          return true
+        }
+      })
+      localStorage.setItem('shoppingcart', JSON.stringify(state.cart))
     }
   },
   getters: {
@@ -43,6 +61,13 @@ const store = new Vuex.Store({
         totalnumb += item.count
       })
       return totalnumb
+    },
+    getGoodCount(state) {
+      let goodCount = {}
+      state.cart.forEach(item => {
+        goodCount[item.id] = item.count
+      })
+      return goodCount
     }
   }
 })
@@ -50,8 +75,8 @@ const store = new Vuex.Store({
 import './css/index.scss'
 // Mint UI
 import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
 Vue.use(MintUI)
+import 'mint-ui/lib/style.css'
 // MUI
 import '../lib/mui-master/dist/css/mui.css'
 import '../lib/mui-master/examples/hello-mui/css/icons-extra.css'
